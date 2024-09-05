@@ -1,4 +1,4 @@
-// Node.jsƒT[ƒo[ƒR[ƒh
+// Node.jsã‚µãƒ¼ãƒãƒ¼ã‚³ãƒ¼ãƒ‰
 
 const { SerialPort } = require('serialport');
 const { ReadlineParser } = require('@serialport/parser-readline');
@@ -6,17 +6,17 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 
-const port = new SerialPort({ path: 'COM7', baudRate: 9600 }); // ƒVƒŠƒAƒ‹ƒ|[ƒg‚ÌÝ’è
+const port = new SerialPort({ path: 'COM7', baudRate: 9600 }); // ã‚·ãƒªã‚¢ãƒ«ãƒãƒ¼ãƒˆã®è¨­å®š
 const parser = port.pipe(new ReadlineParser({ delimiter: '\n' }));
 
 const app = express();
-const svelteServerUrl = 'http://localhost:5173/api/update'; // SvelteƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒGƒ“ƒhƒ|ƒCƒ“ƒgURL
+const svelteServerUrl = 'http://localhost:5173/api/update'; // Svelteã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚¨ãƒ³ãƒ‰ãƒã‚¤ãƒ³ãƒˆURL
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-// Arduino‚©‚ç‚Ìƒf[ƒ^‚ðŽó‚¯Žæ‚é
+// Arduinoã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚‹
 parser.on('data', (data) => {
   console.log(`Received data: ${data}`);
   axios.post(svelteServerUrl, { value: data.trim() })
@@ -24,11 +24,20 @@ parser.on('data', (data) => {
       console.log('Data sent to Svelte:', response.data);
     })
     .catch(error => {
-      console.error('Error sending data to Svelte:', error);
+      if (error.response) {
+        // ã‚µãƒ¼ãƒãƒ¼ãŒã‚¨ãƒ©ãƒ¼ã‚’è¿”ã—ãŸå ´åˆ
+        console.error('Error response from Svelte:', error.response.data);
+      } else if (error.request) {
+        // ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒé€ä¿¡ã•ã‚ŒãŸãŒå¿œç­”ãŒãªã„å ´åˆ
+        console.error('No response received:', error.request);
+      } else {
+        // ãã®ä»–ã®ã‚¨ãƒ©ãƒ¼
+        console.error('Error setting up request:', error.message);
+      }
     });
 });
 
-// SvelteƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚©‚ç‚Ìƒf[ƒ^‚ðŽó‚¯Žæ‚é
+// Svelteã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚‹
 app.post('/data', (req, res) => {
   if (!req.body) {
     return res.status(400).send({ error: 'No data received' });
@@ -47,7 +56,7 @@ app.post('/data', (req, res) => {
 
 let count = 0;
 
-// Arduino‚©‚ç‚ÌƒJƒEƒ“ƒgƒAƒbƒvƒf[ƒ^‚ðŽó‚¯Žæ‚é
+// Arduinoã‹ã‚‰ã®ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚‹
 app.post('/update', (req, res) => {
   if (!req.body) {
     return res.status(400).send({ error: 'No data received' });
@@ -64,7 +73,7 @@ app.post('/update', (req, res) => {
   res.status(200).send({ message: 'Data received' });
 });
 
-// ƒT[ƒo[ƒTƒCƒhƒCƒxƒ“ƒg‚ÌƒGƒ“ƒhƒ|ƒCƒ“ƒg
+// ã‚µãƒ¼ãƒãƒ¼ã‚µã‚¤ãƒ‰ã‚¤ãƒ™ãƒ³ãƒˆã®ã‚¨ãƒ³ãƒ‰ãƒã‚¤ãƒ³ãƒˆ
 app.get('/events', (req, res) => {
   res.setHeader('Content-Type', 'text/event-stream');
   res.setHeader('Cache-Control', 'no-cache');
@@ -74,10 +83,10 @@ app.get('/events', (req, res) => {
     res.write(`data: ${JSON.stringify({ count })}\n\n`);
   };
 
-  // ƒCƒxƒ“ƒg‚ð’èŠú“I‚É‘—M‚·‚é
+  // ã‚¤ãƒ™ãƒ³ãƒˆã‚’å®šæœŸçš„ã«é€ä¿¡ã™ã‚‹
   const intervalId = setInterval(sendEvent, 1000);
 
-  // ƒNƒŠ[ƒ“ƒAƒbƒv
+  // ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒƒãƒ—
   req.on('close', () => {
     clearInterval(intervalId);
     res.end();
