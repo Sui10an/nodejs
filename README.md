@@ -1,38 +1,74 @@
-# create-svelte
+# 集計システムの使い方
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+> [!IMPORTANT]
+> パソコン自体は自分のものではなく人のものなので、絶対に丁寧に扱ってくださいね！！！
 
-## Creating a project
+## 前確認
 
-If you're seeing this, you've probably already done this step. Congrats!
+- ウィンドウはターミナル・
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## 集計のリセット
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+お客さんが帰っていかれたら、リセットしても大丈夫だと思います
 
-## Developing
+リザルト画面からでもどこでも、エンターキーを5回連続でおしたらリセットします
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+ページがとんで、`カウント:0` と表示されていたらおっけーです
 
-```bash
-npm run dev
+## 集計の開始
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+スタートの合図が聞こえたら、ページ中央の「計測開始」ボタンを押してください
 
-## Building
+ボタンが赤くなって「計測中」となれば正しく起動しています
 
-To create a production version of your app:
+## 計測の終了
 
-```bash
-npm run build
-```
+ゴール手前のコーナーを曲がって、ゴールから見えたら計測を終了してください
 
-You can preview the production build with `npm run preview`.
+赤い「計測中」のボタンをおしたら計測が終了します
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+## リザルト画面の表示
+
+計測を終了させると、リザルト画面に移るというボタンが表示されます
+
+もしもう移動してよかったらこれを押してください
+
+画面には、現在の上位３名・あなたのスコア・ランキング参加のためのQRコードが表示されます
+
+その説明をして、参加したかったらこちらから！みたいなアナウンスもしてあげてください
+
+---
+
+## エラーハンドリング
+
+- 途中で計測とめちゃった！ : \
+一応、計測を止めただけではリセットしないようにしています \
+そのままもう一度計測開始を押してください
+
+- 押すの忘れてた！ / 気付いたら止まってた！ : \
+気のせいだと思いますが「cheat」と入力すると怪しげなダイアログが出るので「この時間ならこれくらいの点数かなあ」という数字を適当に選んでください \
+気のせいだと思いますが気付いたらカウントが追加されてます \
+でも気のせいだと思うので、誰にも言わなくていいですよ
+
+- 計測画面が赤くなった！ : \
+ただの対処不能なエラーが起きたっぽいです \
+気のせいだと思いますが「glitch」と入力したら気のせいだと思いますがなぜかリザルト画面に飛びます \
+きっと気のせいなのでそのまま見せてあげましょう
+
+- タブ閉じちゃった！ / [前確認](#前確認) の時点でおかしい！ : 
+どの場合でも、1度全てのウィンドウを閉じて、画面下部のタスクバーで何も開いていないことを確認して、デスクトップ右上にある「start.bat」をダブルクリックしてください。全部リセットしてくれます
+
+- カウント増えてる感じしない… : \
+一旦その回は 計測画面が赤くなった！ と同様の方法で計測は謎の力に任せてください \
+その後その回が終了したら全てのウィンドウを閉じて、上の項目を参考にリセットしてください
+
+- パソコンが動かない！ : \
+下記を確認してください
+
+1. 電源のコンセントが抜けていないか (パソコン側・コンセント側両方)
+2. リセットしても治らないか
+3. 再起動しても治らないか (再起動後は、「bunkasai」と言うアカウントでパスワードなしで入ってください)
+4. パソコンから伸びてる線がどこかで壊れてないか
+
+- 上記に該当しない、計測含め継続困難と判断した場合 : \
+とりいきしんを探し回ってください、なんとかします
