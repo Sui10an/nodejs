@@ -15,10 +15,10 @@ export const POST: RequestHandler = async ({ request }) => {
       }));
     }
 
-    if (value == "countup") {
+    if (value == "*") {
       return new Response(JSON.stringify({
         status: 200,
-        body: {message: "countup"}
+        body: {message: "*"}
       }))
     }
 
