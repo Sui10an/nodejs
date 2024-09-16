@@ -62,7 +62,7 @@ export const POST: RequestHandler = async ({ request }) => {
     const data = await request.json();
     console.log('[/api/countup] Received data:', data);
     
-    let message = ''
+    let message = 'no action'
 
     if (data.value === '*') {
         count.update(n => n + 1)
@@ -72,6 +72,11 @@ export const POST: RequestHandler = async ({ request }) => {
     if (data.value === "-") {
         count.update(() => 0)
         message = '-'
+    }
+
+    if (data.value.match(/^\d+$/)) {
+        count.update(n => n + parseInt(data.value))
+        message = data.value
     }
 
     return new Response(JSON.stringify({ status: 200, message: message }), {
