@@ -3,7 +3,7 @@
 	import { Spinner } from 'flowbite-svelte';
 	import { page } from '$app/stores';
 	import * as QRCode from 'qrcode';
-	import CryptoJS from 'crypto-js';
+	import * as CryptoJS from 'crypto-js';
 
 	const baseURL = 'https://j2a.f5.si/addranking';
 	const key = 'J2A2024';
