@@ -75,8 +75,8 @@
 			<Button on:click={startMeasurement}>0から計測開始</Button>
 			{#if storeCount != 0}
 				<Button on:click={() => (isStart = true)}>再開</Button>
-				<Button on:click={() => goToResult(storeCount)}>リザルト画面に移る</Button>
 			{/if}
+			<Button on:click={() => goToResult(storeCount)}>リザルト画面に移る</Button>
 		</div>
 	{/if}
 </div>

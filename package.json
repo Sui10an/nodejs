@@ -46,11 +46,13 @@
 		"axios": "^1.7.7",
 		"cors": "^2.8.5",
 		"crypto-js": "^4.2.0",
-		"express": "^4.19.2",
+		"express": "^4.21.0",
 		"github-markdown-css": "^5.6.1",
 		"markdown-it": "^14.1.0",
 		"qrcode": "^1.5.4",
 		"serialport": "^12.0.0",
+		"socket.io": "^4.7.5",
+		"socket.io-client": "^4.7.5",
 		"ws": "^8.18.0"
 	}
 }

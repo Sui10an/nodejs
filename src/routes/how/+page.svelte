@@ -23,6 +23,12 @@
         }
         return match;
     });
+
+    content = content.replace(/<h([1-2])>(.*?)\<\/h[1-2]>/gs, (match, p1, p2) => {
+        return `<h${p1} id="${p2}">${p2}</h${p1}>`
+    })
+
+    //TODO: リンク・0点の時
 </script>
 
 <article class="markdown-body p-10">

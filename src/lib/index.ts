@@ -72,7 +72,7 @@ const resetCount = async (event: KeyboardEvent, disp?: Writable<number>) => {
 
 // コマンドの定義
 const commandList = [
-    { keys: 'cheet', action: (mordal: Writable<boolean>) => mordal.set(true) },
+    { keys: 'cheat', action: (mordal: Writable<boolean>) => mordal.set(true) },
     { keys: 'glitch', action: (mordal: Writable<boolean>) => mordal.set(true) }
 ];
 
