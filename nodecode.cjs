@@ -1,18 +1,18 @@
 const { SerialPort } = require('serialport');
 const { ReadlineParser } = require('@serialport/parser-readline');
 const express = require('express');
+const bodyParser = require('body-parser');
 const axios = require('axios');
 const cors = require('cors');
 const http = require('http')
-const socketIo = require('socket.io')
 
 const svelteServerUrl = 'http://localhost:5173/api';
 const app = express();
 const server = http.createServer(app)
-const io = socketIo(server)
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(cors());
 
 const sendPostRequest = async (data) => {
@@ -50,16 +50,15 @@ app.listen(4000, () => {
   console.log('Server is running on port 4000');
 });
 
-io.on('connection', (socket) => {
-  console.log('A client connected');
+server.listen(4001, () => {
+  console.log('Server is running on port 4001');
+});
 
-  socket.on('message', (data) => {
-      console.log('Received message:', data);
-      // クライアントにデータを送信
-      socket.emit('message', 'Hello from server');
-  });
+app.post('/data', (req, res) => {
+  console.log('Received POST request:', req.body);
+  res.status(200).send('Data received');
 
-  socket.on('disconnect', () => {
-      console.log('A client disconnected');
-  });
+  if (req.body.value === '*') {
+    sendPostRequest('*');
+  }
 });
