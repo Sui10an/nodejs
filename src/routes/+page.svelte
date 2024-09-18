@@ -65,6 +65,7 @@
 <div
 	class="w-screen h-screen text-sky-500 font-bold flex flex-col gap-10 items-center justify-center"
 >
+	<p>使い方等のヘルプは <a class="underline" href="/how">こちら</a> から</p>
 	{#if isStart}
 		<p id="count" class="text-xl">Count: {$disp === undefined ? '0' : $disp}</p>
 		<Button on:click={stopMeasurement}>計測停止</Button>
