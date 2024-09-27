@@ -55,8 +55,8 @@ const resetCount = async (event: KeyboardEvent, disp?: Writable<number>) => {
             try {
                 const data = await fetchAPI();
                 if (disp) disp.set(data.count);
-                count.set(0);
-                reset = 0;
+                count.set(100);
+                reset = 100;
                 if (typeof window !== 'undefined') window.location.href = '/';
                 console.log('reset');
             } catch (error) {

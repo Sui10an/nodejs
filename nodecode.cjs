@@ -6,7 +6,7 @@ const axios = require('axios');
 const cors = require('cors');
 const http = require('http')
 
-const svelteServerUrl = 'http://localhost:5173/api';
+const svelteServerUrl = 'http://localhost:5174/api';
 const app = express();
 const server = http.createServer(app)
 

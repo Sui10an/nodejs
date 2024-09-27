@@ -5,9 +5,9 @@
 	import ModalC from '$lib/ModalC.svelte';
 	import ModalG from '$lib/ModalG.svelte';
 
-	let disp = writable(0);
+	let disp = writable(100);
 	let isStart = false;
-	let storeCount = 0;
+	let storeCount = 100;
 	let mordalC = writable(false);
 	let mordalG = writable(false);
 

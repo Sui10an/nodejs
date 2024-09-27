@@ -19,6 +19,8 @@
 
 		const encryptedCo = CryptoJS.AES.encrypt(co, key).toString();
 
+		console.log()
+
 		QRCode.toDataURL(baseURL + '?co=' + encryptedCo, { width: 200, margin: 1 })
 			.then((url) => {
 				src = url;
